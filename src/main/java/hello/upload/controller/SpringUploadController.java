@@ -30,14 +30,19 @@ public class SpringUploadController {
     @PostMapping("/upload")
     public String saveFile(@RequestParam String itemName,
                            @RequestParam MultipartFile file,
+
                            HttpServletRequest request) throws IOException {
 
         log.info("request = {}", request);
         log.info("itemName = {}", itemName);
         log.info("multipartFile={}", file);
-        
+        log.info("filepath = {}", fileDir);
+
+        File newFile = new File("");
+
         if(!file.isEmpty()){
-            String fullPath = fileDir + file.getOriginalFilename();
+            String fullPath = newFile.getAbsolutePath() + "/src/main/resources/static/files" + file.getOriginalFilename();
+//            String fullPath = fileDir + file.getOriginalFilename();
             log.info("파일 저장 fullPath={}", fullPath);
             file.transferTo(new File(fullPath));
         }
