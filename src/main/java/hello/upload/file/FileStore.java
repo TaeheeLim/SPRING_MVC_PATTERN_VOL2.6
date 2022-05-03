@@ -18,7 +18,9 @@ public class FileStore {
     private String fileDir;
 
     public String getFullPath(String fileName){
-        return fileDir + fileName;
+        File file = new File("");
+
+        return file.getAbsolutePath() + "/src/main/resources/static/files" + fileName;
     }
 
     public List<UploadFile> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
